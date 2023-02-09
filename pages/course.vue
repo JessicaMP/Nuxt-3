@@ -1,18 +1,12 @@
 <script setup>
 const course = useCourse();
-const route = useRoute();
+// const route = useRoute();
 
-const chapter = computed(() => {
-  return course.chapters.find(
-    (chapter) => chapter.slug === route.params.chapterSlug
-  );
-});
-
-const listLessons = computed(() => {
-  return chapter.value.lessons.map(({ title, slug, id }) => ({
+const chapters = computed(() => {
+  return course.chapters.map(({ title, slug, lessons}) => ({
     title,
     slug,
-    id,
+    lessons
   }));
 });
 </script>
@@ -35,13 +29,23 @@ const listLessons = computed(() => {
         class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] flex flex-col"
       >
         <h3>Chapters</h3>
-        <ul>
-          <li v-for="lesson in listLessons" :key="lesson.id">
-            <NuxtLink :to="`/course/chapter/${route.params.chapterSlug}/lesson/${lesson.slug}`">
-            {{ lesson.title }}
-          </NuxtLink>
+        <ol class="list-decimal">
+          <li v-for="(chapter, index) in chapters" :key="index">
+           <h4> {{ chapter.title }}</h4>
+              
+
+            <ul v-if="chapter.lessons && chapter.lessons.length > 0">
+              <li v-for="lesson in chapter.lessons" :key="lesson.id">
+                <NuxtLink
+                class="no-underline"
+                  :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+                >
+                  {{ lesson.title }}
+                </NuxtLink>
+              </li>
+            </ul>
           </li>
-        </ul>
+        </ol>
       </div>
       <div class="prose p-12 bg-white rounded-md w-[65ch]">
         <NuxtPage />
