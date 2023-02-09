@@ -3,8 +3,5 @@
 </script>
 
 <template>
-  <!-- <div> -->
   <Lesson />
-  <!-- aaaaa
-</div> -->
 </template>

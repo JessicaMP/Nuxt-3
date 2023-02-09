@@ -20,6 +20,7 @@ export default {
           duration: "5:33",
           scheduled_at: null,
           chapter_course_order: 0,
+          video_id: 684236333,
           text: 'In this lesson, we take a look at some of the benefits of using TypeScript with Vue.js'
         },
         {
@@ -33,6 +34,7 @@ export default {
           duration: "2:33",
           scheduled_at: null,
           chapter_course_order: 0,
+          video_id: 17242,
         },
         {
           id: 737,
@@ -77,6 +79,7 @@ export default {
           duration: "2:10",
           scheduled_at: null,
           chapter_course_order: 1,
+          video_id: 684012498
         },
         {
           id: 740,

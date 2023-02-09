@@ -1,4 +1,6 @@
 <script setup>
+  const VideoPlayer = resolveComponent('VideoPlayer')
+
 const course = useCourse();
 const route = useRoute();
 
@@ -45,11 +47,7 @@ const lesson = computed(() => {
 
       <a v-else href="#" class="cursor-no-drop text-gray-300">Download Video</a>
     </div>
+    <VideoPlayer v-if="lesson.video_id" :videoId="lesson.video_id" />
     <p>{{ lesson?.text || "--" }}</p>
-    <!-- <p>This is a lesson</p>
-    <p>{{ chapter.title }}</p>
-    <p>{{ lesson.title }}</p> -->
-    <!-- <p v-if="$route.params.chapterSlug">Chapter slug: {{ $route.params.chapterSlug }}</p>
-    <p v-if="$route.params.lessonSlug">Lesson slug: {{ $route.params.lessonSlug }}</p> -->
   </div>
 </template>
