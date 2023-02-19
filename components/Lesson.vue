@@ -45,7 +45,7 @@ const lesson = computed(() => {
         Download Video
       </NuxtLink>
 
-      <p v-if="!lesson.sourceUrl && !lesson.downloadUrl" class="m-0 cursor-no-drop text-gray-300">Download Video</p>
+      <p v-if="!lesson.sourceUrl && !lesson.downloadUrl" class="m-0 cursor-no-drop text-gray-300 underline">Download Video</p>
     </div>
     <VideoPlayer v-if="lesson.video_id" :videoId="lesson.video_id" />
     <p>{{ lesson?.text || "--" }}</p>

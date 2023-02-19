@@ -1,5 +1,13 @@
 <script setup>
 const { chapters } = useCourse();
+const route = useRoute()
+
+const getTextColor = computed(() => {
+  return (path) => {
+    if(path === route.fullPath) return 'text-blue-500'
+    return 'text-gray-600'
+  }
+})
 </script>
 
 <template>
@@ -33,10 +41,7 @@ const { chapters } = useCourse();
               <NuxtLink
                 class="no-underline"
                 :to="lesson.path"
-                :class="{
-                  'text-blue-500': lesson.path === $route.fullPath,
-                  'text-gray-600': lesson.path !== $route.fullPath,
-                }"
+                :class="getTextColor(lesson.path)"
               >
                 {{ lesson.title }}
               </NuxtLink>
