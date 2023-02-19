@@ -1,14 +1,5 @@
 <script setup>
-const course = useCourse();
-// const route = useRoute();
-
-const chapters = computed(() => {
-  return course.chapters.map(({ title, slug, lessons}) => ({
-    title,
-    slug,
-    lessons
-  }));
-});
+const { chapters } = useCourse();
 </script>
 
 <template>
@@ -29,23 +20,25 @@ const chapters = computed(() => {
         class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] flex flex-col"
       >
         <h3>Chapters</h3>
-        <ol class="list-decimal">
-          <li v-for="(chapter, index) in chapters" :key="index">
-           <h4> {{ chapter.title }}</h4>
-              
+        <div v-for="(chapter, index) in chapters" :key="index">
+          <h4>
+            <strong>Chapter {{ index + 1 }}</strong> ({{ chapter.title }})
+          </h4>
 
-            <ul v-if="chapter.lessons && chapter.lessons.length > 0">
-              <li v-for="lesson in chapter.lessons" :key="lesson.id">
-                <NuxtLink
+          <ol
+            v-if="chapter.lessons && chapter.lessons.length > 0"
+            class="list-decimal"
+          >
+            <li v-for="lesson in chapter.lessons" :key="lesson.id">
+              <NuxtLink
                 class="no-underline"
-                  :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
-                >
-                  {{ lesson.title }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </li>
-        </ol>
+                :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+              >
+                {{ lesson.title }}
+              </NuxtLink>
+            </li>
+          </ol>
+        </div>
       </div>
       <div class="prose p-12 bg-white rounded-md w-[65ch]">
         <NuxtPage />
