@@ -32,7 +32,11 @@ const { chapters } = useCourse();
             <li v-for="lesson in chapter.lessons" :key="lesson.id">
               <NuxtLink
                 class="no-underline"
-                :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+                :to="lesson.path"
+                :class="{
+                  'text-blue-500': lesson.path === $route.fullPath,
+                  'text-gray-600': lesson.path !== $route.fullPath,
+                }"
               >
                 {{ lesson.title }}
               </NuxtLink>
@@ -46,3 +50,9 @@ const { chapters } = useCourse();
     </div>
   </div>
 </template>
+
+<style scoped>
+.router-link-active {
+  @apply text-blue-500;
+}
+</style>

@@ -29,23 +29,23 @@ const lesson = computed(() => {
     <h2 class="my-0">{{ lesson?.title || "--" }}</h2>
 
     <div class="flex space-x-4">
-      <a
+      <NuxtLink
         v-if="lesson?.sourceUrl"
-        :href="lesson.sourceUrl"
+        :to="lesson.sourceUrl"
         class="font-normal text-md text-gray-500"
       >
         Download Source Code
-      </a>
+      </NuxtLink>
 
-      <a
-        v-else-if="lesson?.downloadUrl"
-        :href="lesson.downloadUrl"
+      <NuxtLink
+        v-if="lesson?.downloadUrl"
+        :to="lesson.downloadUrl"
         class="font-normal text-md text-gray-500"
       >
         Download Video
-      </a>
+      </NuxtLink>
 
-      <a v-else href="#" class="cursor-no-drop text-gray-300">Download Video</a>
+      <p v-if="!lesson.sourceUrl && !lesson.downloadUrl" class="m-0 cursor-no-drop text-gray-300">Download Video</p>
     </div>
     <VideoPlayer v-if="lesson.video_id" :videoId="lesson.video_id" />
     <p>{{ lesson?.text || "--" }}</p>

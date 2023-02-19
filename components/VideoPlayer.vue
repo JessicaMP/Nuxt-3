@@ -19,5 +19,3 @@ const props = defineProps({
   >
   </iframe>
 </template>
-
-<style scoped></style>
